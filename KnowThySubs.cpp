@@ -4,11 +4,15 @@
 #include<string.h>
 #include<iomanip>
 using namespace std;
-int main(){
+int main(int argc, char* argv[]){
     string subs;
     vector <int> v;
-    cout << "Enter path to subtitles: " << endl; 
-    cin >> subs; // Taking the file from user
+    if(argc < 2){
+    	cout << "Enter path to subtitles: " << endl; 
+    	cin >> subs; // Taking the file from user
+    	} else{
+    	subs=argv[1];
+    }
     SubtitleParserFactory *subParserFactory = new SubtitleParserFactory(subs); // Initializing SrtParser Factory object
     SubtitleParser *parser = subParserFactory->getParser(); // Snippet picked from srtparser readme file, idk what it means as well
 
@@ -40,6 +44,6 @@ int main(){
         }
         cout << endl;
     }
-    cout<<"Total frames: "<<v.size();
+    cout << "Total frames: "<< v.size();
 return 0; 
 }
